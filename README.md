@@ -40,3 +40,12 @@ To test all of the feature:
 php artisan test
 
 ```
+
+## Start
+To sturt running the application
+
+```shell
+
+php artisan serve
+
+```
