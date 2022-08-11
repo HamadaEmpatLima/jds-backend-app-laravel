@@ -36,16 +36,16 @@ class AuthController extends Controller
         $token = Auth::guard('api')->attempt($credentials);
         if (!$token) {
             return response()->json([
-                'success' => false,
+                'status' => 'error',
                 'message' => 'Invalid email or password'
             ], 401);
         }
         $user = Auth::guard('api')->user();
+        $user->access_token = $token;
+        $user->token_type = 'Bearer';
         return response()->json([
-            'success' => true,
-            'user' => $user,
-            'access_token' => $token,
-            'token_type'   => 'Bearer',
+            'status' => 'success',
+            'data' => $user,
         ]);
     }
 
